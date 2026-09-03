@@ -16,7 +16,7 @@ const NEXT_STATUS = {
 };
 
 async function nextBookingCode() {
-  const last = await Booking.findOne().sort({ createdAt: -1 }).select('bookingCode');
+  const last = await Booking.findOne().sort({ bookingCode: -1 }).select('bookingCode');
   const lastNum = last ? parseInt(last.bookingCode.split('-')[1], 10) : 10000;
   return `IM-${lastNum + 1}`;
 }
