@@ -83,7 +83,7 @@ async function run() {
     const customer = faker.helpers.arrayElement(customers);
     const status = weightedStatus();
     const scheduledAt = faker.date.between({
-      from: faker.date.past({ years: 0, refDate: new Date() }),
+      from: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000),
       to: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     });
     // Skew scheduledAt toward the last 60 days for a believable "over time" chart.
