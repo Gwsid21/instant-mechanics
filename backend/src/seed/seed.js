@@ -89,10 +89,10 @@ async function run() {
     // Skew scheduledAt toward the last 60 days for a believable "over time" chart.
     const createdAt = faker.date.recent({ days: 60 });
 
-    const needsMechanic = ['assigned', 'on_the_way', 'completed'].includes(status);
+        const needsMechanic = ['assigned', 'on_the_way', 'completed'].includes(status);
+    const cityMechanics = mechanics.filter((m) => m.city === customer.city);
     const mechanic = needsMechanic
-      ? faker.helpers.arrayElement(mechanics.filter((m) => m.city === customer.city)) ||
-        faker.helpers.arrayElement(mechanics)
+      ? faker.helpers.arrayElement(cityMechanics.length ? cityMechanics : mechanics)
       : null;
 
     const amount = faker.number.int({ min: 500, max: 15000 });
